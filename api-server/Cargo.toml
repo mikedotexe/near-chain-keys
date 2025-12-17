@@ -1,0 +1,16 @@
+[package]
+name = "api-server"
+version = "0.1.0"
+edition = "2021"
+description = "High-throughput multi-chain router with O(1) tail-based routing"
+
+[dependencies]
+axum = "0.7"
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Local dependencies
+tail-encoding = { path = "../crates/tail-encoding" }
+orbit-prefilter = { path = "../crates/orbit-prefilter" }
+wire-frame = { path = "../crates/wire-frame" }
