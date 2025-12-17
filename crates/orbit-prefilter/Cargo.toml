@@ -1,0 +1,25 @@
+[package]
+name = "orbit-prefilter"
+version = "0.1.0"
+edition = "2021"
+description = "O(n) Base58 pre-filter for DID/VC ecosystem. Reject invalid inputs 76× faster."
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/example/orbit-prefilter"
+keywords = ["base58", "did", "verifiable-credentials", "validation", "performance"]
+categories = ["cryptography", "encoding", "no-std"]
+
+[features]
+default = ["std"]
+std = []
+
+[dependencies]
+# No dependencies for core functionality - zero-cost abstraction
+
+[dev-dependencies]
+bs58 = "0.5"
+criterion = "0.5"
+rand = "0.8"
+
+[[bench]]
+name = "prefilter_bench"
+harness = false

@@ -1,0 +1,27 @@
+[package]
+name = "tail-encoding"
+version = "0.1.0"
+edition = "2021"
+description = "Self-describing encoding with tail-extractable metadata"
+
+[dependencies]
+bs58 = "0.5.1"
+base64 = "0.22"
+data-encoding = "2.6"  # For base32
+hex = "0.4"            # For CAIP address encoding
+bech32 = "0.11"        # For Cosmos and Bitcoin addresses
+thiserror = "1"        # Error handling
+
+# Cryptographic primitives
+sha3 = "0.10"          # Keccak-256 for Ethereum
+ed25519-dalek = "2"    # Ed25519 key validation
+bitcoin = "0.32"       # Bitcoin address derivation (P2PKH, P2WPKH, P2TR)
+
+[dev-dependencies]
+rand = "0.8"
+criterion = "0.5"
+borsh = { version = "1.5", features = ["derive"] }
+
+[[bench]]
+name = "near_comparison"
+harness = false

@@ -1,0 +1,20 @@
+[package]
+name = "contract"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+near-sdk = "5.23.0"
+borsh = "1.5"
+sha3 = "0.10"           # Keccak256 for Ethereum
+sha2 = "0.10"           # SHA256 for Bitcoin
+ripemd = "0.1"          # RIPEMD160 for Bitcoin
+bech32 = "0.11"         # Bech32 encoding for Bitcoin SegWit
+bs58 = "0.5.1"
+hex = "0.4.3"
+
+[dev-dependencies]
+near-sdk = { version = "5.23.0", features = ["unit-testing"] }

@@ -1,0 +1,11 @@
+[package]
+name = "wire-frame"
+version = "0.1.0"
+edition = "2021"
+description = "Binary framing for cross-chain payload routing"
+
+[dependencies]
+blake3 = "1"
+
+[dev-dependencies]
+hex = "0.4"

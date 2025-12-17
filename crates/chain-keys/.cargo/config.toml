@@ -1,0 +1,4 @@
+[alias]
+wasm = "run-script wasm"
+c = "run-script check"
+t = "run-script test"

@@ -1,0 +1,11 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/orbit-prefilter",
+    "crates/tail-encoding",
+    "crates/wire-frame",
+    "api-server",
+]
+exclude = [
+    "crates/chain-keys",  # Has its own workspace (NEAR contract)
+]
