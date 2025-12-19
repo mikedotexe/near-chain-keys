@@ -1,8 +1,31 @@
-**/target
-**/Cargo.lock
+# Build artifacts
+**/target/
+Cargo.lock
+
+# macOS
 .DS_Store
-*.log
-.env
+**/.DS_Store
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Editor backups
 *.swp
 *.swo
 *~
+
+# Environment
+.env
+.env.*
+
+# Logs
+*.log
+
+# Archives/artifacts
+*.zip
+
+# WASM binaries (rebuild from source)
+res/*.wasm
+**/res/*.wasm

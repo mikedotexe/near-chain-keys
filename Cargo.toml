@@ -7,5 +7,6 @@ members = [
     "api-server",
 ]
 exclude = [
-    "crates/chain-keys",  # Has its own workspace (NEAR contract)
+    "near-contract",    # Has its own build config (NEAR/WASM target)
+    "keystore-worker",  # Has its own build config (WASI target)
 ]

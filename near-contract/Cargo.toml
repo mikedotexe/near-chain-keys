@@ -1,0 +1,51 @@
+[package]
+name = "near-contract"
+version = "0.1.0"
+edition = "2021"
+description = "NEAR authorization contract for TEE keystore"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+near-sdk = "5.23.0"
+borsh = "1.5"
+hex = "0.4.3"
+
+# NEAR Intents crates for multi-wallet signature verification
+defuse-core = { git = "https://github.com/near/intents" }
+defuse-crypto = { git = "https://github.com/near/intents" }
+
+# For ISO8601 timestamp parsing
+chrono = { version = "0.4", default-features = false, features = ["alloc"] }
+
+[dev-dependencies]
+near-sdk = { version = "5.23.0", features = ["unit-testing"] }
+
+[profile.release]
+codegen-units = 1
+opt-level = "s"
+lto = true
+debug = false
+panic = "abort"
+overflow-checks = true
+
+# Build scripts (cargo install cargo-run-script)
+# Usage: cargo wasm, cargo c, cargo t
+[package.metadata.scripts]
+wasm = """#!/bin/bash
+TARGET="${CARGO_TARGET_DIR:-target}"
+set -e
+
+cd "$(dirname $0)"
+mkdir -p res
+
+rustup target add wasm32-unknown-unknown
+RUSTFLAGS='-C link-arg=-s' cargo build --target wasm32-unknown-unknown --release
+cp $TARGET/wasm32-unknown-unknown/release/near_contract.wasm ./res/chain_keys.wasm
+echo "Built: res/chain_keys.wasm"
+ls -lh res/chain_keys.wasm
+"""
+
+c = "cargo check --target wasm32-unknown-unknown"
+t = "cargo test -- --nocapture"

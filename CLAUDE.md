@@ -4,18 +4,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Cross-chain key management on NEAR, with supporting infrastructure for routing and O(n) Base58 validation.
+TEE keystore infrastructure on NEAR: authorization contracts, supporting libraries, and cross-chain tooling.
 
-**Primary Product**: chain-keys NEAR contract
+**Primary Product**: near-contract (NEAR authorization contract for TEE keystore)
 **Standalone Crate**: orbit-prefilter (publishable to crates.io)
 **Supporting Infrastructure**: tail-encoding, wire-frame, api-server
 
 ## Crates
 
-### chain-keys (PRIMARY)
-NEAR smart contract for cross-chain key bindings.
-- `crates/chain-keys/contract/src/lib.rs` - Contract methods (add_key, delete_key, etc.)
-- `crates/chain-keys/contract/src/derivation.rs` - On-chain address derivation
+### near-contract (PRIMARY)
+NEAR authorization contract for TEE keystore intents.
+- `near-contract/src/lib.rs` - Contract: authorize, consume, revoke, optional address registry
+- `near-contract/src/authorization.rs` - Intent verification via NEAR Intents (7 signature types)
 
 ### orbit-prefilter (STANDALONE)
 Production-ready O(n) Base58 pre-filter. Rejects invalid inputs 367x faster than full decoding.
@@ -46,8 +46,9 @@ cargo test --workspace              # Run all tests
 cargo bench -p orbit-prefilter      # Benchmarks
 
 # NEAR contract
-cd crates/chain-keys
-cargo wasm                          # Build WASM
+cd near-contract
+cargo wasm                          # Build WASM -> res/chain_keys.wasm
+cargo c                             # Check compilation
 cargo t                             # Run contract tests
 
 # API server
